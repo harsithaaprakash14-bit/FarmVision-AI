@@ -4,7 +4,7 @@ import base64
 import json
 import sqlite3
 import numpy as np
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 
 # Check database availability
 MYSQL_AVAILABLE = False
@@ -85,6 +85,11 @@ def add_cors_headers(response):
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
     response.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,OPTIONS'
     return response
+
+@app.route('/', methods=['GET'])
+def serve_index():
+    """Serves the main FarmVision-AI frontend (index.html) at the root URL."""
+    return send_from_directory('.', 'index.html')
 
 @app.route('/status', methods=['GET'])
 def get_status():
