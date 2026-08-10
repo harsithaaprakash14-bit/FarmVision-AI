@@ -91,6 +91,16 @@ def serve_index():
     """Serves the main FarmVision-AI frontend (index.html) at the root URL."""
     return send_from_directory('.', 'index.html')
 
+@app.route('/styles.css', methods=['GET'])
+def serve_css():
+    """Serves the FarmVision-AI stylesheet from the repository root."""
+    return send_from_directory('.', 'styles.css')
+
+@app.route('/app.js', methods=['GET'])
+def serve_js():
+    """Serves the FarmVision-AI frontend JavaScript from the repository root."""
+    return send_from_directory('.', 'app.js')
+
 @app.route('/status', methods=['GET'])
 def get_status():
     return jsonify({
