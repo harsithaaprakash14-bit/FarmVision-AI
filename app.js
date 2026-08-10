@@ -473,12 +473,12 @@ async function runClassificationPipeline(forcedType = null) {
     
     // First, attempt to run Flask backend prediction
     try {
-        console.log("[AI HYBRID] Contacting Flask backend server on http://localhost:5000/predict...");
+        console.log("[AI HYBRID] Contacting Flask backend server on /predict...");
         
         // Extract filename from file input or set placeholder
         const filename = els.fileInput.files[0] ? els.fileInput.files[0].name : (forcedType ? `demo_${forcedType}.jpg` : 'webcam_capture.jpg');
         
-        const response = await fetch('http://localhost:5000/predict', {
+        const response = await fetch('/predict', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
